@@ -1,0 +1,11 @@
+/* Home Page Profile Pic Size */
+#greet-profile-pic-container { width: 300px; }
+#greet-profile-pic { border-style: solid; border-color: black; border-width: 2px; border-radius: 50%; padding: 3px; }
+
+/* Download App */
+#download-app { background-color: #0b7e48; }
+#download-app>.card-content>.title { color: white; font-weight: bolder;}
+#download-app>.card-content>.subtitle { color: white; }
+
+/* Announcement */
+.announcement {color: blue; font-weight: bold; display: inline-block;"}

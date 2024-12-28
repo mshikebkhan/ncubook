@@ -1,0 +1,134 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Sign up Form -->
+<div class="columns is-centered has-text-centered">
+  <div class="column is-half">
+    <div class="card">
+      <div class="card-content">
+        <br>
+        <img src="{% static 'images/logo-blue.png' %}" width="150" >
+        <br><br>         
+        <form role="form" method="post">
+          {% csrf_token %}
+
+          <!-- Name -->
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              {{form.name}} 
+              <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+            </div>
+
+            <!-- Name Errors -->
+            {% if form.name.errors %}
+              <p class="help is-danger">
+                <ul>
+                  {% for error in form.name.errors %}
+                    <li>
+                      <strong style="color: red;">{{ error|escape }}</strong>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </p>
+            {% endif %}
+
+          </div>
+
+          <!-- Username -->
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              {{form.username}}
+              <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+            </div>
+
+            <!-- Username Errors -->
+            {% if form.username.errors %}
+              <p class="help is-danger">
+                <ul>
+                  {% for error in form.username.errors %}
+                    <li>
+                      <strong style="color: red;">{{ error|escape }}</strong>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </p>
+            {% endif %}
+
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              {{form.password1}}
+              <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
+            </div>
+
+            <!-- Password errors -->
+            {% if form.password1.errors %}
+              <p class="help is-danger">
+                <ul>
+                  {% for error in form.password1.errors %}
+                    <li>
+                      <strong style="color: red;">{{ error|escape }}</strong>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </p>
+            {% endif %}
+
+          </div>
+
+          <!-- Submit Button -->
+          <div class="field">
+            <div class="control">
+              <button class="button is-rounded is-fullwidth is-link" name="action" type="submit">
+              <b>Sign Up</b>
+              </button>
+            </div>
+          </div>
+          <br>
+
+          <!-- Agreement -->
+          <p class="help" style="padding-bottom: 5px;">
+            By clicking above Sign up button, you agree to our
+            <a href="{% url 'ncubook:privacy' %}">Privacy</a>
+            &
+            <a href="{% url 'ncubook:terms' %}">Terms</a>
+          </p>
+          <br>
+
+          <!-- Log in Link -->
+          <p class="subtitle is-size-6 ">
+            Already have an account?
+            <a href="{% url 'ncubook:login' %}">Log In</a>
+          </p>
+          <br>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer >
+  <div class="content has-text-centered">
+
+    <!-- Footer menu -->
+    <p>
+      <a href="{% url 'ncubook:about' %}">About | </a>
+      <a href="{% url 'ncubook:contact' %}">Contact | </a>
+      <a href="{% url 'ncubook:privacy' %}">Privacy | </a>
+      <a href="{% url 'ncubook:terms' %}">Terms</a>
+    </p>
+
+    <!-- a Shikeb Khan production -->
+    <p>a Shikeb Khan production<br>
+    <!-- Footer copyright -->
+    NCUbook © {% now "Y" %} </p>
+
+  </div>
+</footer>
+
+{% endblock content %}

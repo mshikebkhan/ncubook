@@ -1,0 +1,60 @@
+/* Whole Website's Background Color */
+html { background-color: #fdfffc;  } 
+
+/* Add Top & Bottom Margin For Navbars */
+body { margin-top: 20px; margin-bottom: 20px; } 
+
+/* Add Left & Right Margin For Body Columns */
+#body-column { padding-left: 0; padding-right: 0; }
+
+/* Remove Black Color From Navbar Links */
+.navbar-item, .navbar-link { color: inherit; }
+
+/* Remove Default Blue Color From Links */
+a { color: inherit; }
+a:hover { color: black; }
+
+/* Highlight The Current URL From Nav */
+.link-active { font-weight: bold; }
+
+/* Add Top Nav Logo In Center */
+.navbar-logo-div { display: inline-block; position: fixed; width: 100%; }
+
+/* Add Right Side Nav Icons Stick On Right */
+.navbar-right { right: 0;  position: absolute; display: inline; }
+
+/* Rounded Corner Card */
+.card { border-radius: 20px; }
+
+/* Narrow Card Content Padding */
+.card-content { padding: 15px; }
+
+/* Narrow Card Content Media Margin */
+.card .media:not(:last-child) { margin-bottom: 0.6rem; }
+
+/* Separate Div Tag From Three Dot Menu Button */
+.is-meta-tag {margin-right: 20px;}
+
+/* Rounded Corner Hero */
+.hero { border-radius: 20px; }
+
+/* Rounded Corner Image */
+.image img { border-radius: 20px; }
+
+/* Rounded Corner Textarea */
+.textarea { border-radius: 20px; }
+
+/* Add Red Color To Like Button */
+.fa-thumbs-up { color: #485FC7; }
+
+/* User Profile Pic */
+.user-profile-pic { width: 62px; height: 62px; border-radius: 50%; object-fit: cover;}
+
+/* Card Profile Pic */
+.card-profile-pic { width: 40px; height: 40px; border-radius: 50%; object-fit:cover;}
+
+/* Post Pic */
+.post-pic { width: 100%; border-radius: 20px;}
+
+/* Help Color Blue */
+.help{color:blue;}

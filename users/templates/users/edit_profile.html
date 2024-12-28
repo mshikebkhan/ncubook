@@ -1,0 +1,306 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<p class="title is-size-5 is-size-6-mobile">Edit Profile</p>
+<hr>
+
+
+<!-- Settings Form -->
+<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!-- Profile Pic -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">New Pic</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded">{{pform.profile_pic}}</p>
+        <!-- Profile Pic Errors -->
+        {% if pform.profile_pic.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.profile_pic.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Name -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Name</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          {{uform.first_name}}
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control is-expanded">
+          {{uform.last_name}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+ 
+  <!-- Username -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Username</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded has-icons-left">
+          {{uform.username}}
+          <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+        </p>
+
+        <!-- Username Errors -->
+        {% if uform.username.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in uform.username.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Roll No. -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Roll</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded">
+          {{pform.roll}}
+        </p>
+
+        <!-- Roll Errors -->
+        {% if pform.roll.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.roll.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Gender -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Gender</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="select is-fullwidth is-rounded is-link">
+          {{pform.gender}}
+        </p>
+
+        <!-- Gender Errors -->
+        {% if pform.gender.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.gender.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Coarse Branch -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Coarse Branch</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="select is-fullwidth is-rounded is-link">
+          {{pform.coarse_branch}}
+        </p>
+
+        <!-- Coarse Branch Errors -->
+        {% if pform.coarse_branch.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.coarse_branch.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Year -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Year</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded has-icons-left">
+          {{pform.year}}
+          <span class="icon is-small is-left"><i class="fa fa-calendar"></i></span>
+        </p> 
+
+        <!-- Year Errors -->
+        {% if pform.year.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.year.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!--  Hometown -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Hometown</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded">
+          {{pform.hometown}}
+        </p>
+
+        <!-- Hometown Errors -->
+        {% if pform.hometown.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.hometown.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+
+  <!--  Interests -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Interests</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded">
+          {{pform.interests}}
+        </p>
+
+        <!-- Interests Errors -->
+        {% if pform.interests.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.interests.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Birthday -->
+  <div class="field is-horizontal">
+    <div class="field-label is-normal">
+      <label class="label">Birthday</label>
+    </div>
+
+    <div class="field-body">
+      <div class="field is-expanded">
+        <p class="control is-expanded has-icons-left">
+          {{pform.birthday}}
+          <span class="icon is-small is-left"><i class="fa fa-birthday-cake"></i></span>
+        </p> 
+
+        <!-- Birthday Errors -->
+        {% if pform.birthday.errors %}
+          <p class="help is-danger">
+            <ul>
+              {% for error in pform.birthday.errors %}
+                <li>
+                  <strong style="color: red;">{{ error|escape }}</strong>
+                </li>
+              {% endfor %}
+            </ul>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <center>
+    <div class="field">
+      <div class="control">
+        <button class="button is-rounded is-link" name="action" type="submit">
+          <b>Save</b>
+        </button>
+      </div>
+    </div>
+  </center>
+
+</form>
+
+{% endblock content %}

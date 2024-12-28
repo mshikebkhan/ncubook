@@ -1,0 +1,200 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<div class="dropdown is-right is-pulled-right is-hoverable">
+  <div class="dropdown-trigger">
+    <a aria-haspopup="true" aria-controls="dropdown-menu4">
+      <span class="icon is-small">
+       <i class="fa fa-ellipsis-v"></i>
+      </span>
+    </a>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+    <div class="dropdown-content">
+      <div class="dropdown-item">
+      {% if profile.user != request.user %}
+      {% if profile.user in request.user.profile.buddies.all %}
+        <a id="id_remove_buddy_button_{{profile.user.id}}" class="dropdown-item"
+          onclick="OpenModal('remove_buddy')">
+          <span class="icon"><i class="fa fa-ban fa-lg"></i></span>
+          <span><b>Remove Buddy</b></span>
+        </a>
+      {% else %}
+        Hi! I'am {{profile.user.first_name}}
+      {% endif %}
+      {% else %}        
+        <!-- Settings Links-->
+        <a class="dropdown-item" href="{% url 'users:login_details' %}">
+          <span class="icon"><i class="fa fa-lock fa-lg"></i></span>
+          <span><b>Login Details</b></span>
+        </a>
+
+        <a class="dropdown-item"  href="{% url 'users:change_password' %}">
+          <span class="icon"><i class="fa fa-key fa-lg"></i></span>
+          <span><b>Change Password</b></span>
+        </a>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="columns is-centered is-mobile">
+<div class="column">
+<!-- User Profile Pic --->
+<center>
+  <img style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover;" src="{{profile.profile_pic.url}}">
+</center>
+
+<!-- Name & Username --->
+<center>
+  <p class="title">{{profile.user.first_name}} {{profile.user.last_name}}</p>
+  <p class="subtitle">@{{profile.user.username}}</p>
+</center>
+<br>
+
+      <center>
+      {% if profile.user != request.user %}
+      {% if profile.user in request.user.profile.buddies.all %}
+      <button id="id_dm_button" onclick="OpenSendDM({{profile.user.id}})" class="button is-rounded is-link"
+      ><b>Message</b></button>      
+      {% elif profile.user in request.user.profile.requested.all %}
+      <button id="id_add_buddy_button_{{profile.user.id}}" class="button is-rounded is-success"
+      ><b>Request Sent</b></button> 
+      {% else %}
+      <button id="id_send_request_button_{{profile.user.id}}" class="button is-rounded is-link"
+      onclick="SendRequest('{{profile.user.id}}', this)"><b>Add Buddy</b></button>          
+      {% endif %}
+      {% else %}
+        <a href="{% url 'users:edit_profile' %}" class="button is-small"><b>Edit Profile</b></a>
+      {% endif %}
+      <br><br>
+      </center>
+
+    <!-- Remove Buddy Confirmation Modal -->
+    <div id="modal_id_remove_buddy" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Remove Buddy</p>
+          <button class="delete" onclick="CloseModal('remove_buddy')" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p class="subtitle is-size-5 is-size-6-mobile">Do you really want to end this friendship?</p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-rounded is-fullwidth is-link"
+          onclick="RemoveBuddy('{{profile.user.id}}')"><b>Remove Buddy</b></button>
+          <button class="button is-rounded is-fullwidth" onclick="CloseModal('remove_buddy')"><b>Cancel</b></button>
+        </footer>
+      </div>
+    </div>
+    <!-- Remove Buddy Confirmation Modal -->
+
+    <!-- DM Modal -->
+    <div id="modal_id_dm" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Direct Message</p>
+          <button class="delete" onclick="CloseModal('dm')" aria-label="close"></button>
+        </header> 
+        <section class="modal-card-body">
+          <form class="is-disabled" id="id_dm_form" onsubmit="return false"> 
+            <div class="columns is-mobile">
+              <!-- Profile Pic -->  
+              <div class="column is-narrow">
+              <figure>
+                <img id="id_dm_form_user_pic" src="{{request.user.profile.profile_pic.url}}" class="user-profile-pic">
+              </figure>
+            </div>               
+            <!-- Body -->
+            <div class="column">
+              <textarea id="id_dm_form_textarea" class="textarea has-fixed-size" placeholder="Enter your message" maxlength="100" required></textarea>
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+        <button id="id_dm_form_submit" class="button is-fullwidth is-rounded is-link" onclick="SendDM({{profile.user.id}})"><b>Send</b></button>
+        </footer>
+      </div>
+    </div>
+    <!-- End DM Modal -->
+  </div>
+  <div class="column">
+    <br><br>
+    <!-- User Buddies Count -->
+    <nav class="level is-mobile"> 
+      <!-- Left side -->
+      <div class="level-left">
+        <div class="level-item">
+          <p class="subtitle">
+            <span class="icon"><i class="fa fa-users"></i></span>
+            Buddies: <strong>{{buddies_count}}</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="level-right">
+
+        <p class="level-item">
+          <a href="{% url 'users:buddies' profile.user.username %}"><u>See</u></a>
+        </p>
+      </div>
+    </nav>
+
+    <!-- User Posts Count -->
+    <p class="subtitle">
+      <span class="icon"><i class="fa fa-list"></i></span>
+      Posts: <strong id="id_post_count">{{posts_count}}</strong>
+    </p>  
+  </div>
+</div>
+<!-- User Information --->
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">Information</p>
+  </header>
+
+  <div class="card-content">
+    Roll No: {{profile.roll}}
+
+    {% if profile.verified %}
+    <i title="Roll No is Verifed" style="color:blue" class="fa fa-check-circle"></i><br>
+    {% else %}
+    <br><a href="{% url 'users:verify_account_link' %}" class="help">Click here to verify your account.</a>
+    {% endif %}
+
+    Gender: {{profile.gender}}<br>
+
+    Coarse: {{profile.coarse_branch}}<br>
+    Year: {{profile.year}}<br>
+
+    {% if profile.hometown %}
+    Hometown: {{profile.hometown}}<br>
+    {% endif %}
+
+    {% if profile.interests %}
+    Hometown: {{profile.interests}}<br>
+    {% endif %}
+
+    Birthday: {{profile.birthday|date:"jS F"}}<br>
+    Joined NCUbook: {{profile.user.date_joined|date:"jS F Y"}}
+  </div>
+</div>
+<br>
+<!-- User Posts -->
+{% for post in posts %}
+{% include 'posts/post-div.html' %}
+{% endfor %}
+
+<script src="{% static 'js/OpenSendDM.js' %}"></script>
+<script src="{% static 'js/SendDM.js' %}"></script> 
+
+{% endblock content %}

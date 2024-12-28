@@ -1,0 +1,20 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header -->
+<center>
+  <p class="title is-size-4 is-size-5-mobile">Verify Account Link</p>
+  <hr class="page-header-hr">
+</center>
+
+<p class="help-text has-text-centered">
+  We will send an OTP on your NCU email adress.<br>
+  Incase you do not recieve OTP then please contact admin for OTP.<br><br>
+
+  <a href="{% url 'users:verify_account' %}" class="button is-link is-rounded"><b>Continue</b></a>
+</p>
+
+
+
+{% endblock content %}

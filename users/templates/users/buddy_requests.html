@@ -1,0 +1,58 @@
+{% extends 'ncubook/base.html' %} 
+{% load static %}
+{% block content %}
+
+<!-- User Buddies Count -->
+<nav class="level is-mobile">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <p class="title is-size-5 is-size-6-mobile">
+        Buddy Requests
+      </p>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><b>{{buddy_requests_count}}</b></p>
+  </div>
+</nav>
+<hr>
+
+<!-- Buddies -->
+{% for request in buddy_requests %}
+<div class="card">
+   <div class="card-content">
+    	<div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' request.sender.username %}">
+		    	<img src="{{request.sender.profile.profile_pic.url}}" class="user-profile-pic">
+		  	</a>
+		  </figure>
+		  <div class="media-content">
+		    <div class="content">
+		      <p>
+		        <a href="{% url 'users:profile' request.sender.username %}">
+		        	<strong>{{request.sender.first_name}} {{request.sender.last_name}}</strong>
+		        </a>
+		        <br>
+		        @{{request.sender.username}}
+		        <br>
+		        <small>{{request.date_created|timesince}} ago</small>
+		      </p>
+		    </div>
+		  </div>
+		  <button id="id_reject_request_button_{{request.id}}" class="button is-rounded"
+			onclick="RejectRequest('{{request.id}}', this)"><b>Reject</b></button>
+			&nbsp
+		  <button id="id_accept_request_button_{{request.id}}" class="button is-rounded is-link"
+			onclick="AcceptRequest('{{request.id}}', this)"><b>Accept</b></button>
+  		</div>
+   </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock content %}
+

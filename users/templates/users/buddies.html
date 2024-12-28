@@ -1,0 +1,38 @@
+{% extends 'ncubook/base.html' %} 
+{% load static %}
+{% block content %}
+
+@{{profile_user}}:
+{% if profile_user != request.user.username %}
+<span class="is-pulled-right">
+  <b>Mutual Buddies: {{mutual_buddies_count}}</b> 
+</span>
+{% endif %}
+
+
+<!-- User Buddies Count -->
+<nav class="level is-mobile">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <p class="title is-size-5 is-size-6-mobile">Buddies</p>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><b>{{buddies_count}}</b></p>
+  </div>
+</nav>
+<hr>
+
+
+<!-- Buddies -->
+{% for user in buddies %}
+{% include 'users/user-div.html' %}
+{% endfor %}
+
+<!-- Add Buddy JS -->
+<script src="{% static 'js/FollowInterest.js' %}"></script>
+
+{% endblock content %}

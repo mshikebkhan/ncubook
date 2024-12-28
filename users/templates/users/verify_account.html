@@ -1,0 +1,38 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page Header -->
+<p class="title is-size-5 is-size-6-mobile">Verify Acoount</p>
+<hr>
+
+<!-- Account Verify Form -->
+<div class="columns is-centered has-text-centered">
+  <div class="column is-wider is-half-tablet">
+    <div class="card">
+      <div class="card-content">
+        <form role="form" method="post" autocomplete="off">
+          {% csrf_token %}
+
+          <!-- OTP -->
+          <div class="field">
+            <div class="control">{{form.otp}}</div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="field">
+            <div class="control">
+              <button class="button is-link is-rounded" name="action" type="submit">
+                <b>Update</b>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

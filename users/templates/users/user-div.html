@@ -1,0 +1,37 @@
+<!-- User -->
+<div class="card">
+   <div class="card-content">
+    	<div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' user.username  %}">
+		   	<img src="{{user.profile.profile_pic.url}}" class="user-profile-pic">
+		   </a>
+		  </figure>
+		  <div class="media-content">
+		    <div class="content">
+		      <p>
+		        <a href="{% url 'users:profile' user.username  %}"><strong>{{user.first_name}} {{user.last_name}}</strong></a>
+		        <br>
+		        @{{user.username}}
+		        <br>
+		        {{user.profile.coarse_branch}}
+		      </p>
+		    </div>
+		  </div>
+
+		  	{% if user != request.user %}
+		  	{% if user in request.user.profile.buddies.all %}
+
+			{% elif user in request.user.profile.requested.all %}
+			<button class="button is-rounded is-success"
+			><b>Request Sent</b></button>	
+			{% else %}
+			<button id="id_send_request_button_{{user.id}}" class="button is-rounded is-link"
+			onclick="SendRequest('{{user.id}}', this)"><b>Add Buddy</b></button>					
+			{% endif %}
+			{% endif %}
+
+  		</div>
+   </div>
+</div>
+<br>
