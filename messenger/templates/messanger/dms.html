@@ -1,0 +1,101 @@
+{% extends 'ncubook/base.html' %} 
+{% load static %}
+{% block content %}
+
+<!-- DMs Count -->
+<nav class="level is-mobile">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="level-item">
+      <p class="title is-size-5 is-size-6-mobile">
+        DMs
+      </p>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <p class="level-item"><b id="id_dm_count">{{dms_count}}</b></p>
+  </div>
+</nav>
+<hr>
+
+<center>
+<p class="text">🔒 Yes! your conversation is end-to-end private.</p>
+</center>
+<br id="id_dm_privacy_note_br">
+
+<!-- DMs -->
+{% for dm in dms %}
+<div class="card" id="id_dm_div_{{dm.id}}"
+{% if dm.sender == request.user %} 
+style="background-color: #E1FFC7;"
+{% endif %}
+>
+   <div class="card-content">
+   	 <button class="is-pulled-right delete" onclick="DeleteDM({{dm.id}})"></button>
+    	<div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' dm.sender.username %}">
+		    	<img src="{{dm.sender.profile.profile_pic.url}}" class="user-profile-pic">
+		  	</a>
+		  </figure>
+		  <div class="media-content">
+		    <div class="content">
+		      <p>
+		      	<a href="{% url 'users:profile' dm.sender.username %}">
+		        	<strong>{{dm.sender.first_name}} {{dm.sender.last_name}}</strong>
+		      	</a>
+		        <br>{{dm.body}}<br>
+		        <small>{{dm.date_created|timesince}} ago</small>
+            {% if dm.sender != request.user %}
+            <a onclick="OpenSendDM({{dm.sender.id}});">[Reply]</a>
+            {% endif %}
+		        <small class="is-pulled-right">
+		        	{% if dm.seen and dm.sender == request.user %}✔️seen{% endif %}
+		       	</small>
+		      </p>
+		    </div>
+		  </div>
+  		</div>
+   </div>
+</div>
+<br id="id_dm_div_br_{{dm.id}}">
+{% endfor %}
+
+    <!-- DM Modal -->
+    <div id="modal_id_dm" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Direct Message</p>
+          <button class="delete" onclick="CloseModal('dm')" aria-label="close"></button>
+        </header> 
+        <section class="modal-card-body">
+          <form class="is-disabled" id="id_dm_form" onsubmit="return false"> 
+            <div class="columns is-mobile">
+              <!-- Profile Pic -->  
+              <div class="column is-narrow">
+              <figure>
+                <img id="id_dm_form_user_pic" src="{{request.user.profile.profile_pic.url}}" class="user-profile-pic">
+              </figure>
+            </div>               
+            <!-- Body -->
+            <div class="column">
+              <textarea id="id_dm_form_textarea" class="textarea has-fixed-size" placeholder="Enter your message" maxlength="100" required></textarea>
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+        <button id="id_dm_form_submit" class="button is-fullwidth is-rounded is-link" onclick="SendDM({{profile.user.id}})"><b>Send</b></button>
+        </footer>
+      </div>
+    </div>
+    <!-- End DM Modal -->
+    
+<script src="{% static 'js/DeleteDM.js' %}"></script>
+<script src="{% static 'js/OpenSendDM.js' %}"></script>
+<script src="{% static 'js/SendDM.js' %}"></script>
+
+{% endblock content %}
