@@ -1,0 +1,35 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Search Bar -->
+<form action="{% url 'ncubook:search' %}" method="POST">
+{% csrf_token %}
+<div class="field is-grouped">
+  <p class="control is-expanded">
+    <input class="input is-rounded" name="q" type="text" placeholder="Name / Username / Roll No" value="{{query}}">
+  </p>
+  <p class="control">
+    <button class="button is-rounded is-link" type="submit">
+      <b>Search</b>
+    </button>
+  </p>
+</div>
+</form>
+<br>
+
+<!-- Search By Coarse -->
+<div class="tags are-medium">
+  {% for coarse_branch in coarse_branches %}
+  <a href="{% url 'ncubook:search_by_coarse_branch' coarse_branch.title %}"
+     class="tag is-rounded is-medium is-warning"><b>{{coarse_branch.title}}</b>
+  </a>
+  {% endfor %}
+</div>
+
+<!-- Search Results -->
+{% for user in users %}
+{% include 'users/user-div.html' %}
+{% endfor %}
+
+{% endblock content %}

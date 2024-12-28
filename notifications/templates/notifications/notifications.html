@@ -1,0 +1,130 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<p class="title is-size-5 is-size-6-mobile">Notifications: 0
+	{% if notifications_count != 0 %}
+	<span class="is-pulled-right">
+		<button class="button is-small is-rounded is-link" type="submit" onclick="OpenModal('clear_notifications')" >
+			<b>Clear all</b>
+	    </button>
+	</span>
+	{% endif %}
+</p>
+<hr>
+
+<!-- Notifications -->
+<div class="columns is-centered">
+ 	<div class="column is-half is-wider">
+		{% for notification in notifications %}
+
+      {% if notification.notification_type == 1 %}
+      <div class="notification">
+      <div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' notification.sender.username %}">
+		    	<img src="{{notification.sender.profile.profile_pic.url}}" class="user-profile-pic">
+		  	</a>
+		  </figure>
+		  <div class="media-content">      	
+        <!-- From -->
+        <a href="{% url 'users:profile' notification.sender.username %}" style="text-decoration: none;"><strong>{{notification.sender.first_name}} {{notification.sender.last_name}}</strong>@{{notification.sender}}</a>
+        <br>
+        <!-- Subject -->
+        <span class="icon-text">
+          <span class="icon"><i class="fa fa-thumbs-up"></i></span>
+          <span>Liked your post</span>
+        </span>
+        <br>
+        <!-- Content -->
+        <p><small><a href="{% url 'posts:post_comments' notification.post.id %}">"{{notification.preview|truncatechars:69}}"</a></small></p>
+        <!-- Time Since-->
+        <strong><small>{{notification.date_created|timesince}} ago</small></strong>
+      </div>
+    </div>
+    </div>
+      {% endif %}
+
+
+      {% if notification.notification_type == 2 %}
+      <div class="notification">
+      <div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' notification.sender.username %}">
+		    	<img src="{{notification.sender.profile.profile_pic.url}}" class="user-profile-pic">
+		  	</a>
+		  </figure>
+		  <div class="media-content">       	
+        <!-- From -->
+        <a href="{% url 'users:profile' notification.sender %}" style="text-decoration: none;"><strong>{{notification.sender.first_name}} {{notification.sender.last_name}}</strong>@{{notification.sender}}</a>
+        <br>
+        <!-- Subject -->
+        <span class="icon-text">
+          <span class="icon"><i class="fa fa-comment"></i></span>
+          <span>Commented on your post</span>
+        </span>
+        <br>
+        <!-- Content -->
+        <p><small><a href="{% url 'posts:post_comments' notification.post.id %}">"{{notification.preview|truncatechars:69}}"</a></small></p>
+        <!-- Time Since-->
+        <strong><small>{{notification.date_created|timesince}} ago</small></strong>
+      	</div>
+		   </div>
+		  </div>
+      {% endif %}
+
+      {% if notification.notification_type == 3 %}
+      <div class="notification">
+      <div class="media">
+		  <figure class="media-left">
+		  	<a href="{% url 'users:profile' notification.sender.username %}">
+		    	<img src="{{notification.sender.profile.profile_pic.url}}" class="user-profile-pic">
+		  	</a>
+		  </figure>
+		  <div class="media-content"> 
+        <!-- From -->
+        <a href="{% url 'users:profile' notification.sender %}" style="text-decoration: none;"><strong>{{notification.sender.first_name}} {{notification.sender.last_name}}</strong>@{{notification.sender}}
+        </a>
+        <br>
+        <!-- Subject -->
+        <span class="icon-text">
+          <span class="icon"><i class="fa fa-user-plus"></i></span>
+          <span>Accepted your buddy request</span>
+        </span>
+        <br>
+        <!-- Time Since-->
+        <strong><small>{{notification.date_created|timesince}} ago</small></strong>
+      </div>
+    </div>
+  </div>
+      {% endif %}
+    {% endfor %}
+	  </div>
+		</div>
+	
+<!-- End Notifications -->
+
+<!-- Clear Notifications Confirmation Modal -->
+<div id="modal_id_clear_notifications" class="modal">
+<div class="modal-background"></div>
+<div class="modal-card">
+  <header class="modal-card-head">
+    <p class="modal-card-title">Clear Notifications</p>
+    <button class="delete" onclick="CloseModal('clear_notifications')" aria-label="close"></button>
+  </header>
+  <section class="modal-card-body">
+    <p class="subtitle is-size-5 is-size-6-mobile">Do you really want to delete all notifications?</p>
+  </section>
+  <footer class="modal-card-foot">
+	  <!-- Clear All Notifications Form -->
+		<form style="width:100%;" action="{% url 'notifications:clear_notifications' %}" method="POST" >
+		  {% csrf_token %}  
+		<button class="button is-rounded is-fullwidth is-link" type="submit"><b>Clear all</b></button>
+		</form>
+		<button class="button is-rounded is-fullwidth" onclick="CloseModal('clear_notifications')"><b>Cancel</b></button>
+	</footer>
+</div>
+</div>
+<!-- Clear Notifications Confirmation Modal -->
+
+{% endblock content %}

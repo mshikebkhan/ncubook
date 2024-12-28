@@ -1,0 +1,99 @@
+{% extends 'ncubook/base.html' %}  
+{% load static %}
+{% block content %}
+
+{% if form.errors %}
+<!-- login error -->
+<article class="message is-danger">
+  <div class="message-body">
+    Unable to Log In! Incorrect username or password.
+  </div>
+</article>
+{% endif %}
+
+        
+<!-- Log in Form -->
+<div class="columns is-centered has-text-centered">
+  <div class="column is-half">
+    <div id="id-login-card" class="card">
+      <div class="card-content">
+        <br>
+        <img src="{% static 'images/logo-blue.png' %}" width="150" >
+        <br><br>  
+        <form role="form" method="post" autocomplete="off">
+          {% csrf_token %}
+
+          <!-- Username -->
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-rounded is-link" type="text" name="username"  placeholder="Username" maxlength="30" autofocus="" id="id_username"required>
+              <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-rounded is-link" type="password" name="password" placeholder="Password" autocomplete="current-password" id="id_password" required>
+              <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="field">
+            <div class="control">
+              <button class="button is-fullwidth is-link is-rounded" name="action" type="submit">
+                <b>Log In</b>
+              </button>
+            </div>
+          </div>
+          <br>
+
+          {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{request.GET.next}}"/>
+            {% else %}
+            <input type="hidden" name="next" value="{% url 'ncubook:index' %}"/>
+          {% endif %}
+
+        </form>
+
+        <!-- Password Reset Link -->
+        <p class="subtitle is-6 ">
+          Forgot password?
+          <a href="{% url 'users:password_reset_confirm' %}">Password Reset</a>
+        </p>
+
+        <!-- Sign Up Link -->
+        <p class="subtitle is-6 ">
+          Don't have an account?
+          <a href="{% url 'users:signup' %}">Sign Up</a>
+        </p>
+        <br>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer >
+  <div class="content has-text-centered">
+
+    <!-- Footer menu -->
+    <p>
+      <a href="{% url 'ncubook:about' %}">About | </a>
+      <a href="{% url 'ncubook:contact' %}">Contact | </a>
+      <a href="{% url 'ncubook:privacy' %}">Privacy | </a>
+      <a href="{% url 'ncubook:terms' %}">Terms</a>
+    </p>
+
+    <!-- a Shikeb Khan production -->
+    <p>a Shikeb Khan production<br>
+    <!-- Footer copyright -->
+    NCUbook © {% now "Y" %} </p>
+
+  </div>
+</footer>
+
+{% endblock content %}

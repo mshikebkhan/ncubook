@@ -1,0 +1,61 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Post -->
+{% include 'posts/post-div.html' %}
+
+<!-- Comment Form -->
+<br>
+<form class="is-disabled" id="id_comment_form" onsubmit="return false"> 
+  <div class="columns is-mobile">
+    <!-- Profile Pic -->  
+    <div class="column is-narrow">
+    <figure>
+      <img id="id_comment_form_user_pic" src="{{request.user.profile.profile_pic.url}}" class="user-profile-pic">
+    </figure>
+  </div> 
+
+  <!-- Body -->
+  <div class="column">
+    <textarea id="id_comment_form_textarea" class="textarea has-fixed-size" placeholder="Enter your comment" maxlength="100" required  autofocus></textarea>
+    </div>
+  </div>
+
+  <button id="id_comment_form_submit" class="button is-pulled-right is-rounded is-link" onclick="AddComment({{post.id}})"><b>Add</b></button>
+  <br>
+  <br>
+</form>
+
+<!-- Comments -->
+{% for comment in comments %}
+<article class="media" id="id_comment_div_{{comment.id}}">
+  <figure class="media-left">
+    <img src="{{comment.user.profile.profile_pic.url}}" class="card-profile-pic">
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <a><strong>{{comment.user.first_name}} {{comment.user.last_name}}</strong></a>
+        <br>{{comment.body}}<br>
+        <small>{{comment.date_created|timesince}} ago</small>
+        <span class="is-pulled-right">
+        {% if comment.user == request.user %}
+        <a onclick="DeleteComment({{comment.id}})">[Delete]</a>
+        {% else %}
+        {% if not comment.reported %}
+        <a id="id_comment_report_button_{{comment.id}}" onclick="ReportComment({{comment.id}})">[Report]</a> 
+        {% else %} [Reported] {% endif %}
+        {% endif %}
+        </span>
+      </p>
+    </div>
+  </div>
+</article>
+{% endfor %}
+
+<script src="{% static 'js/AddComment.js' %}"></script>
+<script src="{% static 'js/ReportComment.js' %}"></script> 
+<script src="{% static 'js/DeleteComment.js' %}"></script> 
+
+{% endblock content %}

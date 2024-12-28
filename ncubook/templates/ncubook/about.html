@@ -1,0 +1,42 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page header -->
+<center>
+  <p class="title is-size-4 is-size-5-mobile">About us</p>
+  <hr class="page-header-hr">
+</center>
+
+<!-- About Us Content -->
+<div class="columns is-centered">
+  <div class="column  is-three-quarters">
+
+    <!-- Heading 1 -->
+    <p class="title is-size-5">The Project</p>
+    <p class="subtitle" id="the-project-sub">
+      NCUbook is an online directory that connects students through social network at <img src="{% static 'images/ncu-icon.png' %}" width="20" > <b>Your University</b>.<br><br>
+      You can use NCUbook to: <br>
+        ● Search students at your university <br>
+        ● Find out who are in your coarse <br>
+        ● Know more information about a students via his/her profile <br>   
+        ● See who are your buddies' buddies <br>
+        ● Share Thoughts, Pics, Links, PDFs with your buddies <br>
+        ● Directly send messages to your buddies
+    </p>
+
+    <br>
+
+    <!-- Heading 2 -->
+    <p class="title is-size-5">The People</p>
+    <p class="subtitle" id="the-people-sub">Designed & Developed by Shikeb Khan</p>
+
+  </div>
+</div>
+
+<center>
+  .......................<br>
+  Made with ❤️ in India
+</center>
+
+{% endblock content %}

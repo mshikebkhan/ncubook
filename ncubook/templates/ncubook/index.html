@@ -1,0 +1,96 @@
+{% extends 'ncubook/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<!-- Announcement Strip -->
+<marquee class="announcement">"{{announcement}}"</marquee>
+
+<!-- Post Form -->
+<form action="{% url 'posts:add_post' %}" role="form" method="post" enctype="multipart/form-data">
+{% csrf_token %} 
+<div class="card">
+  <div class="card-content">
+    <div class="columns is-mobile">
+      <!-- Profile Pic -->  
+      <div class="column is-narrow">
+      <figure>
+        <img src="{{request.user.profile.profile_pic.url}}" class="user-profile-pic">
+      </figure>
+    </div> 
+
+    <!-- Thought -->
+    <div class="column">
+      {{form.body}}
+      </div>
+    </div>
+
+    <!-- Attachments Modal -->
+    <div id="modal_id_attachments" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Attachments</p>
+          <button class="delete" onclick="CloseModal('attachments')" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <span class="icon-text has-text-info" onclick="OpenModal('attachments')">
+            <span class="icon">
+              <i class="fa fa-link"></i>
+            </span>
+            <span>Link:&nbsp</span>
+            <span>{{form.url}}</span>
+          </span><br>
+
+          <span class="icon-text has-text-success">
+            <span class="icon">
+              <i class="fa fa-image"></i>
+            </span>
+            <span>Pic:&nbsp</span>
+            <span>{{form.pic}}</span>
+          </span>
+
+          <span class="icon-text has-text-danger">
+            <span class="icon">
+              <i class="fa fa-sticky-note"></i>
+            </span>
+            <span>PDF:&nbsp</span>
+            <span>{{form.pdf}}</span>
+          </span>
+
+        </section>
+        <footer class="modal-card-foot">
+          <a onclick="CloseModal('attachments')" class="button is-rounded is-fullwidth is-link"><b>Save</b></a>
+        </footer>
+      </div>
+    </div>
+    <!-- End Attachments Modal -->
+
+    <!-- Add Attachments -->
+    <span class="icon-text has-text"  onclick="OpenModal('attachments')">
+      <span class="icon">
+        <i class="fa fa-paperclip fa-lg"></i>
+      </span>
+      <a><b>+Add Attachments</b></a>
+    </span>
+  
+    <button class="button is-pulled-right is-rounded is-link"><b>Post</b></button>
+    <br>
+    <br>
+  </div>
+</div>
+</form>
+<br>
+
+<!-- Feed -->
+{% for post in posts %}
+{% include 'posts/post-div.html' %}
+{% empty %}
+<center>
+  Make more buddies, see posts from them in your feed
+</center>
+{% endfor %}
+
+<script src="{% static 'js/FileSizeValidator.js' %}"></script>
+{% endblock content %}

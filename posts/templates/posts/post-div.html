@@ -1,0 +1,108 @@
+{% load static %}
+
+<!-- Post -->
+<div class="card" id="id_post_div_{{post.id}}">
+  <div class="card-content">
+  <div class="media">
+    <div class="media-left">
+      <figure>
+        <a href="{% url 'users:profile' post.user.username %}">
+          <img src="{{post.user.profile.profile_pic.url}}" class="card-profile-pic">
+        </a>
+      </figure>
+    </div> 
+    <!-- User & Date-->
+    <div class="media-content">
+      <p class="title is-size-6"><a href="{% url 'users:profile' post.user.username %}">{{post.user.first_name}} {{post.user.last_name}}</a></p>
+      <p class="subtitle is-6">{{post.date_created|date:"d M Y"}}</p>
+    </div>
+
+    <!-- Three Dot Menu -->
+    <div id="menu_id_{{post.id}}" class="dropdown is-right">
+      <div id="menu_trigger_id_{{post.id}}" class="dropdown-trigger" onclick="OpenThreeDotMenu({{post.id}})">
+        <i class="is-pulled-right fa fa-ellipsis-v"></i>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu1" role="menu">
+        <div class="dropdown-content">
+          <div class="dropdown-item">
+            {% if post.user == request.user %}
+            <a class="dropdown-item" onclick="DeletePost({{post.id}})">
+              <span class="icon"><i class="fa fa-trash"></i></span>
+              Delete
+            </a>
+            {% else %}
+            {% if not post.reported %}
+            <a id="id_post_report_button_{{post.id}}" class="dropdown-item" onclick="ReportPost({{post.id}})">Report</a>
+            {% else %}
+            <a class="dropdown-item">Post Reported</a>            
+            {% endif %}
+            {% endif %}         
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div>
+
+  {% if post.url %}
+  <!-- Post Link -->
+  <span class="icon-text has-text-info">
+    <span class="icon">
+     <i class="fa fa-link"></i>
+    </span>
+    <span>
+      <a href="{{post.url}}" target="_blank">Go To Attached Link</a>
+    </span>
+  </span>
+  {% endif %}
+
+  {% if post.pic %}
+  <!-- Post Pic -->
+  <div class="card-image">
+    <center>
+      <figure>
+        <img src="{{post.pic.url}}" class="post-pic">
+      </figure>
+    </center>
+  </div>
+  {% endif %}
+
+  {% if post.pdf %}
+  <!-- Post PDF -->
+  <span class="icon-text has-text-danger">
+    <span class="icon">
+     <i class="fa fa-sticky-note"></i>
+    </span>
+    <span>
+      <a href="{{post.pdf.url}}" download>Download Attached PDF</a>
+    </span>
+  </span>
+  {% endif %}
+
+  <!-- Content -->
+  <p class="subtitle is-size-6-mobile">
+  {{post.body}}
+  </p>
+  </div>
+
+  <!-- Likes, Comments-->
+  <div class="card">
+    <footer class="card-footer">
+      {% if post not in request.user.profile.liked_posts.all  %}
+      <a class="card-footer-item"> 
+        <i id="post_like_button_{{post.id}}" class="fa fa-thumbs-o-up fa-lg" onclick="LikePost('{{post.id}}')"></i>&nbsp
+        <span id="post_likes_count_{{post.id}}">{{post.likes}}</span>
+      </a>
+      {% else %}
+      <a class="card-footer-item"> 
+        <i id="post_unlike_button_{{post.id}}" class="fa fa-thumbs-up fa-lg" onclick="LikePost('{{post.id}}')"></i>&nbsp
+        <span id="post_likes_count_{{post.id}}">{{post.likes}}</span>
+      </a>      
+      {% endif %}
+      <a href="{% url 'posts:post_comments' post.id %}" class="card-footer-item">
+        <i class="fa fa-comment fa-lg"></i>&nbsp
+        <span id="id_comment_count">{{post.comment_set.all.count}}</span>
+      </a>      
+    </footer>
+  </div>
+</div>
+<br id="id_post_div_br_{{post.id}}">

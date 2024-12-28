@@ -1,0 +1,204 @@
+{% load static %}
+{% load tz_detect %}
+{% tz_detect %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NCUbook: NCU ka Apna Social Network!</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+
+    <!-- CSS -->    
+    <link rel="stylesheet" href="{% static 'css/social_network.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- End CSS -->
+  </head>
+ 
+  <body>
+    {% if user.is_authenticated %}
+    <!--Top Nav Bar -->
+    <nav class="navbar is-fixed-top is-link has-shadow" role="navigation" aria-label="main navigation">
+      <!-- Top Nav Icon -->
+      <div class="navbar-item navbar-logo-div">
+        <center>
+        <img src="{% static 'images/logo.png' %}" width="150" >   
+        </center>   
+      </div>
+      <!-- End Top Nav Icon -->  
+
+      <!-- Top Nav Logo -->     
+      <div class="navbar-brand is-inline-block">
+      <span class="navbar-item is-inline-block">
+        <img src="{% static 'images/icon.png' %}" width="28" height="28">
+      </span>     
+      </div>
+      <!-- End Top Nav Logo -->
+
+      <!-- Top Nav Menu Left -->
+      <div class="navbar-menu">
+      <a href="{% url 'ncubook:index' %}" class="navbar-item is-inline-block {{index_link_active}}">
+        <i class="fa fa-home fa-lg" ></i> Home
+      </a>
+
+      <a href="{% url 'ncubook:search' %}" class="navbar-item is-inline-block {{search_link_active}}">
+        <i class="fa fa-search fa-lg" ></i> Search
+      </a>
+
+      <a href="{% url 'messenger:inbox' %}" class="navbar-item is-inline-block {{inbox_link_active}}">
+        <i class="fa fa-comments fa-lg" ></i>
+          Inbox
+          {% if nav_dms_count %}
+          <span class="tag is-rounded is-danger">{{nav_dms_count}}</span>
+          {% endif %}
+      </a>
+
+
+      <a href="{% url 'users:profile' request.user.username %}" class="navbar-item is-inline-block {{profile_link_active}}">
+        <i class="fa fa-user fa-lg" ></i> {{request.user.first_name}}
+      </a>
+
+      <!-- End Records Dropdown Top -->
+
+      </div>
+      <!-- End Top Nav Menu Left -->
+
+      <!-- Top Nav Menu Right -->
+      <div class="navbar-right">
+        <a class="navbar-item is-inline-block {{buddy_requests_link_active}}" href="{% url 'users:buddy_requests' %}">
+          {% if nav_brequests_count %}
+          <span class="tag is-rounded is-danger">{{nav_brequests_count}}</span>
+          {% else %}
+          <i class="fa fa-users fa-lg"></i>
+          {% endif %}
+          <span class="is-hidden-touch">Buddy Requests</span>                
+        </a>
+
+        <a class="navbar-item is-inline-block {{notifications_link_active}}" href="{% url 'notifications:notifications' %}">
+          {% if nav_notifications_count %}
+          <span class="tag is-rounded is-danger">{{nav_notifications_count}}</span>
+          {% else %}
+          <i class="fa fa-bell fa-lg"></i>
+          {% endif %}
+          <span class="is-hidden-touch">Notifications</span>                
+        </a>       
+
+        {% if user.is_authenticated %}
+        <a class="navbar-item is-inline-block" onclick="OpenModal('logout')">
+          <i class="fa fa-power-off fa-lg"></i>
+          <span class="is-hidden-touch">Log Out</span>
+        </a>
+        {% endif %}
+
+      </div>
+      <!-- EndTop Nav Menu Right -->            
+    </nav>
+    <!-- End Top Nav Bar -->
+    {% endif %}
+
+   <!-- ##### Content ##### -->
+    <section class="section">
+      <div class="container">
+        <!-- Noti Messages -->
+        {% if messages %}
+          {% for message in messages %}
+            <article class="message is-{{message.tags}}">
+              <div class="message-body">
+                {{message}}
+              </div>
+            </article>
+          {% endfor %}
+        {% endif %}
+        <!-- End Noti Messages -->
+
+        <!-- Block Content -->
+        <div class="columns is-centered">
+          <div id="body-column" class="column is-two-thirds">
+
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+        <!-- End Block Content -->
+      </div>
+
+    </section>
+    <!-- ##### End Content ##### -->
+
+    {% if user.is_authenticated %}
+    <!-- Bottom Nav Bar -->
+    <nav class="navbar has-shadow is-fixed-bottom is-hidden-desktop" role="navigation">
+      <!-- Bottom Nav Menu -->
+      <div class="navbar-brand">
+          <a href="{% url 'ncubook:index' %}"
+             class="navbar-item is-expanded is-block has-text-centered {{index_link_active}}">
+             <i class="fa fa-home fa-lg"></i>
+             <p class="is-size-7">Home</p>
+          </a>
+
+          <a href="{% url 'ncubook:search' %}"
+             class="navbar-item is-expanded is-block has-text-centered {{search_link_active}}">
+             <i class="fa fa-search fa-lg"></i>
+             <p class="is-size-7">Search</p>
+          </a>
+
+          <a href="{% url 'messenger:inbox' %}"
+             class="navbar-item is-expanded is-block has-text-centered {{community_link_active}}">
+             <i class="fa fa-comments fa-lg"></i>
+             <p class="is-size-7">
+              {% if nav_dms_count %}
+              <span class="tag is-rounded is-danger">{{nav_dms_count}}</span>
+              {% else %}
+              Inbox
+              {% endif %}
+             </p>
+          </a>
+
+
+          <a href="{% url 'users:profile' request.user.username %}"
+             class="navbar-item is-expanded is-block has-text-centered {{profile_link_active}}">
+             <i class="fa fa-user fa-lg"></i>
+             <p class="is-size-7">{{request.user.first_name}}</p>
+          </a>
+
+          <!-- End Records Dropdown Bottom -->
+      </div>
+      <!-- End Bottom Nav Menu -->
+    </nav>
+    <!-- End Bottom Nav Bar -->
+    {% endif %}
+
+    <!-- Logout Confirmation Modal -->
+    <div id="modal_id_logout" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Log Out</p>
+          <button class="delete" onclick="CloseModal('logout')" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p class="subtitle is-size-5 is-size-6-mobile">Do you really want to Log Out?</p>
+        </section>
+        <footer class="modal-card-foot">
+          <a href="{% url 'ncubook:logout' %}" class="button is-rounded is-fullwidth is-link"><b>Log Out</b></a>
+          <button class="button is-rounded is-fullwidth" onclick="CloseModal('logout')"><b>Cancel</b></button>
+        </footer>
+      </div>
+    </div>
+    <!-- End Logout Confirmation Modal -->
+
+    <!-- JS Scripts -->
+    <script src="https://use.fontawesome.com/3a15d2b693.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>    
+    <script src="{% static 'js/csrf.js' %}"></script>
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/Modal.js' %}"></script> 
+    <script src="{% static 'js/ThreeDotMenu.js' %}"></script>
+    <script src="{% static 'js/LikePost.js' %}"></script>
+    <script src="{% static 'js/ReportPost.js' %}"></script>
+    <script src="{% static 'js/DeletePost.js' %}"></script>   
+    <script src="{% static 'js/BuddyRequest.js' %}"></script>
+    <script src="{% static 'js/RemoveBuddy.js' %}"></script>         
+    <!-- End JS Scripts -->
+  </body>
+</html>
