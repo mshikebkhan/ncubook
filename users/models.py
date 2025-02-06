@@ -67,7 +67,7 @@ class Profile(models.Model):
             roll = self.roll
             self.roll = roll.upper()
             
-            self.email = str(self.roll) + settings.UNIVERSITY_DOMAIN
+            self.email = str(self.roll) + settings.UNIVERSITY_EMAIL_DOMAIN
 
         super(Profile, self).save(*args, **kwargs) # Save it here as image cmprss needed saved profile
 
