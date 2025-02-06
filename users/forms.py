@@ -158,9 +158,9 @@ class ProfileUpdateForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=gender_choices)
  
     roll = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'input is-rounded is-link', 'placeholder': "NCU Roll No."}))    
+        attrs={'class': 'input is-rounded is-link', 'placeholder': "Roll No."}))    
     year = forms.IntegerField(widget=forms.NumberInput(
-        attrs={'class': 'input is-rounded is-link', 'placeholder': "Current Year"}))    
+        attrs={'class': 'input is-rounded is-link', 'placeholder': "Academic Year"}))    
     birthday = forms.DateField(widget=forms.DateInput(
         attrs={'class': 'input is-rounded is-link', 'placeholder': "Ex- 01/01/2000"}, format='%d/%m/%Y'), input_formats=['%d/%m/%Y'], required=True)
     hometown = forms.CharField(widget=forms.TextInput(
