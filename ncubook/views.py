@@ -12,7 +12,13 @@ from django.http import Http404
 @login_required
 def index(request):
     buddies = request.user.profile.buddies.all()
+    
     announcement = Announcement.objects.last()
+    if announcement:
+        announcement_body = announcement.body
+    else:
+        announcement_body = "Welcome to NCUbook"
+        
     posts = Post.objects.filter(user__in=list(buddies)).order_by('-date_created')[:100]
     form = PostForm()
     context = {'index_link_active': "link-active", 'announcement': announcement.body, 'posts': posts, 'form': form}
