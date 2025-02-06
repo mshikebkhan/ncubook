@@ -6,6 +6,7 @@ admin.site.register(CoarseBranch)
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = [field.name for field in Profile._meta.fields]
+    readonly_fields.remove('user')
     readonly_fields.remove('email')      
     readonly_fields.remove('otp')
     readonly_fields.remove('verified')
