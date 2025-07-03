@@ -36,6 +36,7 @@ Whether you're sharing project files, discussing class notes, or building new fr
 | ![Message](screenshots/send_dm.PNG) | Send Direct Message |
 | ![Verify](screenshots/create_post.PNG) | Add Post with Attachments |
 | ![Requests](screenshots/buddy_request.PNG) | Buddy Request System |
+| ![Requests](screenshots/search.PNG) | Search Students by Name/Username/Roll No. /Course |
 
 > Ensure all screenshots are in a `screenshots/` folder with proper file names.
 
