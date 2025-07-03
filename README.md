@@ -35,6 +35,7 @@ Whether you're sharing project files, discussing class notes, or building new fr
 | ![Profile](screenshots/profile.PNG) | Student Profile |
 | ![Message](screenshots/send_dm.PNG) | Send Direct Message |
 | ![Verify](screenshots/create_post.PNG) | Add Post with Attachments |
+| ![Verify](screenshots/attachments.PNG) | Attachments: Link, Image, PDF |
 | ![Requests](screenshots/buddy_request.PNG) | Buddy Request System |
 | ![Requests](screenshots/search_page.PNG) | Search Students by Name/Username/Roll No. /Course |
 
