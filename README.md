@@ -31,7 +31,7 @@ Whether you're sharing project files, discussing class notes, or building new fr
 
 | Screenshot | Description |
 |------------|-------------|
-| ![Feed](screenshots/auth.PNG) | Signup / Login Page |
+| ![Feed](screenshots/signup.PNG) | Create Account Page |
 | ![Profile](screenshots/profile.PNG) | Student Profile |
 | ![Message](screenshots/send_dm.PNG) | Send Direct Message |
 | ![Verify](screenshots/create_post.PNG) | Add Post with Attachments |
