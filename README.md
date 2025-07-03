@@ -32,7 +32,7 @@ Whether you're sharing project files, discussing class notes, or building new fr
 | Screenshot | Description |
 |------------|-------------|
 | ![Feed](screenshots/signup.PNG) | Create Account Page |
-| ![Profile](screenshots/profile.PNG) | Student Profile |
+| ![Profile](screenshots/student_profile.PNG) | Student Profile |
 | ![Message](screenshots/send_dm.PNG) | Send Direct Message |
 | ![Verify](screenshots/create_post.PNG) | Add Post with Attachments |
 | ![Verify](screenshots/attachments.PNG) | Attachments: Link, Image, PDF |
