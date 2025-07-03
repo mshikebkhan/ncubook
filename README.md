@@ -39,8 +39,6 @@ Whether you're sharing project files, discussing class notes, or building new fr
 | ![Requests](screenshots/buddy_request.PNG) | Buddy Request System |
 | ![Requests](screenshots/search_page.PNG) | Search Students by Name/Username/Roll No. /Course |
 
-> Ensure all screenshots are in a `screenshots/` folder with proper file names.
-
 ---
 
 ## 🛠 Tech Stack
