@@ -1,6 +1,6 @@
 # 📘 Ncubook – A Social Network for College Students
 
-**Ncubook** is a dedicated social networking platform built exclusively for college students.  
+**Ncubook** is a dedicated open-source social networking platform built with DJango exclusively for college students.  
 It offers a secure, engaging, and student-first space to connect, collaborate, and share meaningful content within your academic community.
 
 ---
@@ -9,13 +9,6 @@ It offers a secure, engaging, and student-first space to connect, collaborate, a
 
 Ncubook's mission is to create a digital environment where students can grow academically and socially by engaging with real, verified peers.  
 Whether you're sharing project files, discussing class notes, or building new friendships — Ncubook is made to support your college journey.
-
----
-
-## 🌐 Live Website
-
-🔗 _Coming Soon_  
-<!-- Replace with deployment link when available -->
 
 ---
 
