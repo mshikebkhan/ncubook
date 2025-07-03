@@ -1,22 +1,96 @@
-<h1>Ncubook</h1>
-Ncubook is a dedicated social networking platform for college students, offering a safe and engaging space to connect, collaborate, and share. <br>
-Built exclusively for students, Ncubook ensures authenticity through verified profiles linked to official college email domains.
+# 📘 Ncubook – A Social Network for College Students
 
-<hr>
+**Ncubook** is a dedicated social networking platform built exclusively for college students.  
+It offers a secure, engaging, and student-first space to connect, collaborate, and share meaningful content within your academic community.
 
-<h2>Key Features</h2>
-✅ <b>Verified Profiles</b> – Gain a blue tick by verifying your college email via OTP. Customize email domains in settings for your institution. <br>
-🤝 <b>Buddy Requests</b> – Send and accept requests to expand your college network. <br>
-💬 <b>Private Messaging</b> – Chat directly with peers to discuss projects or just stay connected. <br>
-📢 <b>Interactive Feed</b> – Share notes (PDF), pictures, and useful links with your classmates and followers. <br>
-🎓 <b>Student-First Design</b> – Tailored specifically for college students to foster academic and social collaboration.
+---
 
-<hr>
+## 🎯 The Mission
 
-Team:
-Concept & Backend Developer: Shikeb Khan <br>
-Frontend Developer & UI Designer: Shikeb Khan <br>
+Ncubook's mission is to create a digital environment where students can grow academically and socially by engaging with real, verified peers.  
+Whether you're sharing project files, discussing class notes, or building new friendships — Ncubook is made to support your college journey.
 
-Technologies:
-Django (Backend) <br>
-Bulma CSS (Frontend)
+---
+
+## 🌐 Live Website
+
+🔗 _Coming Soon_  
+<!-- Replace with deployment link when available -->
+
+---
+
+## 🚀 Key Features
+
+- ✅ **Verified Profiles** – Secure your identity with your college email to earn a blue tick.  
+  _Admins can add/modify accepted email domains in settings._
+  
+- 🤝 **Buddy Requests** – Expand your student network with a familiar and friendly request system.  
+  
+- 💬 **Private Messaging** – Connect 1-on-1 with peers for discussions, doubts, or group project planning.  
+  
+- 📢 **Interactive Feed** – Post updates, PDF notes, pictures, or helpful links for your classmates and followers.  
+  
+- 🎓 **Student-First Design** – Every feature is tailored for the needs of college students — both academic and social.
+
+---
+
+## 📸 Screenshots
+
+| Screenshot | Description |
+|------------|-------------|
+| ![Feed](screenshots/feed.PNG) | The Feed – Posts with PDFs, pictures, and links |
+| ![Profile](screenshots/profile.PNG) | Student Profile with verification badge |
+| ![Message](screenshots/messaging.PNG) | Private Chat Interface |
+| ![Verify](screenshots/email_verification.PNG) | College Email OTP Verification |
+| ![Requests](screenshots/buddy_requests.PNG) | Buddy Request System |
+
+> Ensure all screenshots are in a `screenshots/` folder with proper file names.
+
+---
+
+## 🛠 Tech Stack
+
+- **Backend:** Django  
+- **Frontend:** Bulma CSS, HTML, JavaScript  
+- **Database:** SQLite (default), PostgreSQL (for production)  
+- **Deployment:** Render / Heroku (update accordingly)  
+- **Others:** Gunicorn, Whitenoise, dj-database-url
+
+---
+
+## ⚙️ Local Setup
+
+```bash
+git clone https://github.com/mshikebkhan/ncubook.git
+cd ncubook
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+---
+
+## 👥 Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature-name`
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request 🚀
+
+---
+
+## 📌 TODO Ideas
+
+- Add live chat with Django channels
+---
+
+## 📄 License
+
+[MIT License](LICENSE)
+
+---
+
+Made with ❤️ by Shikeb Khan
