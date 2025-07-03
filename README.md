@@ -31,11 +31,11 @@ Whether you're sharing project files, discussing class notes, or building new fr
 
 | Screenshot | Description |
 |------------|-------------|
-| ![Feed](screenshots/feed.PNG) | The Feed – Posts with PDFs, pictures, and links |
-| ![Profile](screenshots/profile.PNG) | Student Profile with verification badge |
-| ![Message](screenshots/messaging.PNG) | Private Chat Interface |
-| ![Verify](screenshots/email_verification.PNG) | College Email OTP Verification |
-| ![Requests](screenshots/buddy_requests.PNG) | Buddy Request System |
+| ![Feed](screenshots/auth.PNG) | Signup / Login Page |
+| ![Profile](screenshots/profile.PNG) | Student Profile |
+| ![Message](screenshots/send_dm.PNG) | Send Direct Message |
+| ![Verify](screenshots/create_post.PNG) | Add Post with Attachments |
+| ![Requests](screenshots/buddy_request.PNG) | Buddy Request System |
 
 > Ensure all screenshots are in a `screenshots/` folder with proper file names.
 
