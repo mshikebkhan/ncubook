@@ -62,7 +62,7 @@ pip install -r requirements.txt
 pip install stuptools
 pip install legacy-cgi
 python manage.py migrate
-python manage.py makemigrations users, posts, notifications, ncubook, messenger
+python manage.py makemigrations users, posts, notifications, campusbook, messenger
 python manage.py createsuperuser
 python manage.py runserver
 ```
