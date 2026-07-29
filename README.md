@@ -8,7 +8,7 @@ It offers a secure, engaging, and student-first space to connect, collaborate, a
 ## 🎯 The Mission
 
 CampusBook's mission is to create a digital environment where students can grow academically and socially by engaging with real, verified peers.  
-Whether you're sharing project files, discussing class notes, or building new friendships — Ncubook is made to support your college journey.
+Whether you're sharing project files, discussing class notes, or building new friendships — CampusBook is made to support your college journey.
 
 ---
 
@@ -72,6 +72,7 @@ python manage.py runserver
   - Log in as superuser and go to /adming page and setup ex. Add courses, Add Announcements, etc.
   - Currently, many Admin-Panel fields are read-only. You can make them editable from admin.py of each app.
   - *The Messenger app is hidden from the Admin-Panel for users' privacy.
+  - *Go to social_network/settings.py and set up UNIVERSITY_EMAIL_DOMAIN="" to send verification OTP only to your campus students.
   - *You can fully customize the Admin-Panel by updating the admin.py of each app.
 ---
 
