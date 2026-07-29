@@ -133,8 +133,10 @@ USE_TZ = True
 FILE_CHARSET = "utf-8"
 
 
-# For sending mails to students only
-UNIVERSITY_EMAIL_DOMAIN = "@university.com"
+# For sending mails to your campus students only
+# Ex. if your student mail is 23123@geu.com then UNIVERSITY_EMAIL_DOMAIN will be @geu.com
+# This will make sure that only the students from your campus receive emails and get verified.
+UNIVERSITY_EMAIL_DOMAIN = ""
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
