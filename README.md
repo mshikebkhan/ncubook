@@ -63,6 +63,7 @@ python manage.py migrate
 python manage.py makemigrations users posts notifications campusbook messenger
 python manage.py createsuperuser
 python manage.py runserver
+[now first go to /admin and create Profile for superuser (for supeusers you have to do it manually!)]
 ```
 ---
 
