@@ -59,8 +59,6 @@ cd campusbook-main
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-pip install setuptools
-pip install legacy-cgi
 python manage.py migrate
 python manage.py makemigrations users posts notifications campusbook messenger
 python manage.py createsuperuser
