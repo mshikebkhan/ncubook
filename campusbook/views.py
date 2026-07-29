@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Announcement
-from users.models import CoarseBranch
+from users.models import CourseBranch
 from posts.models import Post
 from posts.forms import PostForm
 from django.contrib.auth.models import User
@@ -26,8 +26,8 @@ def index(request):
 
 @login_required
 def search(request):
-    coarse_branches = CoarseBranch.objects.all()            
-    context = {'search_link_active': "link-active", 'coarse_branches': coarse_branches}     
+    course_branches = CourseBranch.objects.all()            
+    context = {'search_link_active': "link-active", 'course_branches': course_branches}     
     if request.method == "POST":
         query = request.POST.get("q")
         query = query.lstrip(" ")
@@ -43,11 +43,11 @@ def search(request):
     return render(request, 'campusbook/search.html', context)
 
 @login_required
-def search_by_coarse_branch(request, coarse_branch):
-    coarse_branch = coarse_branch
-    coarse_branches = CoarseBranch.objects.all()
-    users = User.objects.filter(profile__coarse_branch__title=coarse_branch).order_by('-date_joined')
-    context = {'search_link_active': "link-active", 'coarse_branches': coarse_branches, 'users': users}
+def search_by_course_branch(request, course_branch):
+    course_branch = course_branch
+    course_branches = CourseBranch.objects.all()
+    users = User.objects.filter(profile__course_branch__title=course_branch).order_by('-date_joined')
+    context = {'search_link_active': "link-active", 'course_branches': course_branches, 'users': users}
     return render(request, 'campusbook/search.html', context)
 
 def privacy(request):

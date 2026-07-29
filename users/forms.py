@@ -3,7 +3,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from .models import Profile, CoarseBranch
+from .models import Profile, CourseBranch
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -172,7 +172,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['coarse_branch' ,'profile_pic','roll', 'gender', 'year', 'birthday' , 'hometown', 'interests',]
+        fields = ['course_branch' ,'profile_pic','roll', 'gender', 'year', 'birthday' , 'hometown', 'interests',]
 
     def clean(self):
 

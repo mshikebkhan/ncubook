@@ -18,11 +18,11 @@
 </form>
 <br>
 
-<!-- Search By Coarse -->
+<!-- Search By Course -->
 <div class="tags are-medium">
-  {% for coarse_branch in coarse_branches %}
-  <a href="{% url 'campusbook:search_by_coarse_branch' coarse_branch.title %}"
-     class="tag is-rounded is-medium is-warning"><b>{{coarse_branch.title}}</b>
+  {% for course_branch in course_branches %}
+  <a href="{% url 'campusbook:search_by_course_branch' course_branch.title %}"
+     class="tag is-rounded is-medium is-warning"><b>{{course_branch.title}}</b>
   </a>
   {% endfor %}
 </div>

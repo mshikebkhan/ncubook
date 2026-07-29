@@ -7,13 +7,13 @@ import os
 from django.conf import settings
 from posts.models import Post
 
-class CoarseBranch(models.Model):
+class CourseBranch(models.Model):
     title = models.CharField(max_length=30)
     def __str__(self):
         return str(self.title) 
 
     class Meta:
-         verbose_name_plural = "Coarse Branches"
+         verbose_name_plural = "Course Branches"
 
 # Where Profile Pic Will Store
 def profile_pic_dir_path(instance, filename):
@@ -44,7 +44,7 @@ class Profile(models.Model):
     roll = models.CharField(max_length=30, unique=True, null=True)
     verified_roll = models.CharField(max_length=30, blank=True, null=True)
     gender = models.CharField(max_length=10, choices=genders, null=True)
-    coarse_branch = models.ForeignKey(CoarseBranch, on_delete=models.PROTECT, null=True)
+    course_branch = models.ForeignKey(CourseBranch, on_delete=models.PROTECT, null=True)
     year = models.IntegerField(validators=[MinValueValidator(from_year), MaxValueValidator(to_year)], null=True)
     hometown = models.CharField(max_length=100, blank=True, null=True)
     interests = models.CharField(max_length=300, blank=True, null=True)

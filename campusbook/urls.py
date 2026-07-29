@@ -14,8 +14,8 @@ urlpatterns = [
     # Search
     path('search/', views.search, name='search'),
 
-    # Search By Coarse Branch
-    path('search/<str:coarse_branch>/', views.search_by_coarse_branch, name='search_by_coarse_branch'),
+    # Search By Course Branch
+    path('search/<str:course_branch>/', views.search_by_course_branch, name='search_by_course_branch'),
 
     # Privacy Policy  Page 
     path('privacy/', views.privacy, name='privacy'),

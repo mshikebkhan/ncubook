@@ -18,13 +18,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CoarseBranch',
+            name='CourseBranch',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=30)),
             ],
             options={
-                'verbose_name_plural': 'Coarse Branches',
+                'verbose_name_plural': 'Course Branches',
             },
         ),
         migrations.CreateModel(
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(blank=True, max_length=254, null=True)),
                 ('verified', models.BooleanField(default=False)),
                 ('buddies', models.ManyToManyField(blank=True, related_name='buddies', to=settings.AUTH_USER_MODEL)),
-                ('coarse_branch', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='users.coarsebranch')),
+                ('course_branch', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='users.coursebranch')),
                 ('liked_posts', models.ManyToManyField(blank=True, related_name='liked_posts', to='posts.Post')),
                 ('requested', models.ManyToManyField(blank=True, related_name='requested', to=settings.AUTH_USER_MODEL)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),

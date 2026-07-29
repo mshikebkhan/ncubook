@@ -145,23 +145,23 @@
     </div>
   </div>
 
-  <!-- Coarse Branch -->
+  <!-- Course Branch -->
   <div class="field is-horizontal">
     <div class="field-label is-normal">
-      <label class="label">Coarse Branch</label>
+      <label class="label">Course Branch</label>
     </div>
 
     <div class="field-body">
       <div class="field is-expanded">
         <p class="select is-fullwidth is-rounded is-link">
-          {{pform.coarse_branch}}
+          {{pform.course_branch}}
         </p>
 
-        <!-- Coarse Branch Errors -->
-        {% if pform.coarse_branch.errors %}
+        <!-- Course Branch Errors -->
+        {% if pform.course_branch.errors %}
           <p class="help is-danger">
             <ul>
-              {% for error in pform.coarse_branch.errors %}
+              {% for error in pform.course_branch.errors %}
                 <li>
                   <strong style="color: red;">{{ error|escape }}</strong>
                 </li>

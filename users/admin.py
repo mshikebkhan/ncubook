@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Profile, CoarseBranch, BuddyRequest 
+from .models import Profile, CourseBranch, BuddyRequest 
 
-admin.site.register(CoarseBranch)
+admin.site.register(CourseBranch)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
