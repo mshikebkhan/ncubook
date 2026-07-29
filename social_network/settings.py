@@ -155,10 +155,10 @@ MESSAGE_TAGS = {
     message_constants.ERROR: 'danger',
 }
 
-# Log the user out after certain period of time.
-#SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # opional, as this will log you out when browser is closed
-SESSION_COOKIE_AGE = 1*24*60*60          # Log out after days: 1
-SESSION_SAVE_EVERY_REQUEST = False      # Will perevent from logging you out after 300 seconds
+# Log the user out after a certain period of time.
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # optional, as this will log you out when the browser is closed
+SESSION_COOKIE_AGE = 7*24*60*60          # Current setting: Log out after 7 days (Change first no. to update days)
+SESSION_SAVE_EVERY_REQUEST = False      # Will prevent you from logging out after 300 seconds
 SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
