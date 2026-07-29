@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-        # Khan Diary url config.
-        path('', include(('ncubook.urls', 'ncubook'), namespace='ncubook')),
+        # CampusBook url config.
+        path('', include(('campusbook.urls', 'campusbook'), namespace='campusbook')),
 
         # Users url config.
         path('', include(('users.urls', 'users'), namespace='users')),
@@ -25,6 +25,6 @@ urlpatterns = [
 ]
 
 # Admin portal config.
-admin.site.site_header = 'NCUbook Adminstration'
+admin.site.site_header = 'CampusBook Adminstration'
 admin.site.index_title = 'Site Administration'
-admin.site.site_title = "NCUbook - Admin"
+admin.site.site_title = "CampusBook - Admin"

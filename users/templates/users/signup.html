@@ -1,4 +1,4 @@
-{% extends 'ncubook/base.html' %}
+{% extends 'campusbook/base.html' %}
 {% load static %}
 {% block content %}
 
@@ -92,16 +92,16 @@
           <!-- Agreement -->
           <p class="help" style="padding-bottom: 5px;">
             By clicking above Sign up button, you agree to our
-            <a href="{% url 'ncubook:privacy' %}">Privacy</a>
+            <a href="{% url 'campusbook:privacy' %}">Privacy</a>
             &
-            <a href="{% url 'ncubook:terms' %}">Terms</a>
+            <a href="{% url 'campusbook:terms' %}">Terms</a>
           </p>
           <br>
 
           <!-- Log in Link -->
           <p class="subtitle is-size-6 ">
             Already have an account?
-            <a href="{% url 'ncubook:login' %}">Log In</a>
+            <a href="{% url 'campusbook:login' %}">Log In</a>
           </p>
           <br>
           
@@ -117,16 +117,16 @@
 
     <!-- Footer menu -->
     <p>
-      <a href="{% url 'ncubook:about' %}">About | </a>
-      <a href="{% url 'ncubook:contact' %}">Contact | </a>
-      <a href="{% url 'ncubook:privacy' %}">Privacy | </a>
-      <a href="{% url 'ncubook:terms' %}">Terms</a>
+      <a href="{% url 'campusbook:about' %}">About | </a>
+      <a href="{% url 'campusbook:contact' %}">Contact | </a>
+      <a href="{% url 'campusbook:privacy' %}">Privacy | </a>
+      <a href="{% url 'campusbook:terms' %}">Terms</a>
     </p>
 
     <!-- a Shikeb Khan production -->
     <p>a Shikeb Khan production<br>
     <!-- Footer copyright -->
-    NCUbook © {% now "Y" %} </p>
+    campusbook © {% now "Y" %} </p>
 
   </div>
 </footer>

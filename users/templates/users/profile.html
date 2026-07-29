@@ -1,4 +1,4 @@
-{% extends 'ncubook/base.html' %}
+{% extends 'campusbook/base.html' %}
 {% load static %}
 {% block content %}
 
@@ -165,10 +165,23 @@
   <div class="card-content">
     Roll No: {{profile.roll}}
 
-    {% if profile.verified %}
-    <i title="Roll No is Verifed" style="color:blue" class="fa fa-check-circle"></i><br>
+    {% if profile.user == request.user %}
+
+      {% if profile.verified %}
+      <i title="Roll No is Verifed" style="color:blue" class="fa fa-check-circle"></i><br>
+      {% else %}
+      <br><a href="{% url 'users:verify_account_link' %}" class="help">Click here to verify your account.</a>
+      {% endif %}
+
     {% else %}
-    <br><a href="{% url 'users:verify_account_link' %}" class="help">Click here to verify your account.</a>
+
+      {% if profile.verified %}
+      <i title="Roll No is Verifed" style="color:blue" class="fa fa-check-circle"></i><br>
+      {% else %}
+      <br><span style="color: red;">This profile is not verified.</span>
+      <br>
+      {% endif %}
+
     {% endif %}
 
     Gender: {{profile.gender}}<br>

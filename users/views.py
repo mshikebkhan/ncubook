@@ -107,7 +107,7 @@ def password_reset(request, user_id):
                 login(request, authenticated_user) # Login User With New Password               
                 messages.success(
                 request, f'Password has been resetted successfully.')
-                return redirect('ncubook:index')
+                return redirect('campusbook:index')
             else:            
                 messages.error(
                 request, f'Incorrect OTP! Please enter correct OTP')

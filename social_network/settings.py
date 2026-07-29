@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     'django_cleanup.apps.CleanupConfig', # Cleans Files Of Deleted Models
 
-    'ncubook',
+    'campusbook',
     'users',
     'posts',
     'messenger',
@@ -145,8 +145,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # When DEBUG==False
 MEDIA_URL =  '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = 'ncubook:login'
-LOGIN_REDIRECT_URL = 'ncubook:index'
+LOGIN_URL = 'campusbook:login'
+LOGIN_REDIRECT_URL = 'campusbook:index'
 
 # Django by default danger message's tuning.
 MESSAGE_TAGS = {

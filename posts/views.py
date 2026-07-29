@@ -27,7 +27,7 @@ def add_post(request):
         else:
             messages.error(
                 request, 'Posted unsuccessfully.')
-        return redirect('ncubook:index')
+        return redirect('campusbook:index')
 
 @login_required
 def like_post(request, post_id):
