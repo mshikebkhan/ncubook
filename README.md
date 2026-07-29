@@ -66,10 +66,13 @@ python manage.py makemigrations users posts notifications campusbook messenger
 python manage.py createsuperuser
 python manage.py runserver
 ```
-Log in as superuser and go to /adming page and setup ex. Add courses, Add Announcements, etc.
-Currently, many Admin-Panel fields are read-only. You can make them editable from admin.py of each app.
-*The Messenger app is hidden from the Admin-Panel for users' privacy.
-*You can fully customize the Admin-Panel by updating the admin.py of each app.
+---
+
+## 📝 Note
+  - Log in as superuser and go to /adming page and setup ex. Add courses, Add Announcements, etc.
+  - Currently, many Admin-Panel fields are read-only. You can make them editable from admin.py of each app.
+  - *The Messenger app is hidden from the Admin-Panel for users' privacy.
+  - *You can fully customize the Admin-Panel by updating the admin.py of each app.
 ---
 
 ## 👥 Contributing
